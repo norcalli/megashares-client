@@ -50,7 +50,7 @@ func main() {
 
 	// Print out the results of the search for the user to pick from.
 	for i, entry := range entries {
-		fmt.Printf("%d: %s\n", i, entry.Filename)
+		fmt.Fprintf(os.Stderr, "%d: %s\n", i, entry.Filename)
 	}
 
 	// Get a valid number to choose from from the input loop.
@@ -58,6 +58,8 @@ func main() {
 	choice := getValidNumber(0, len(entries)-1)
 	entry := entries[choice]
 
+	fmt.Print(entry.Url)
+	return
 	if file, response, err := ContinueDownload(client.Client, entry.Filename, entry.Url); err != nil {
 		log.Fatal(err)
 	} else {
@@ -106,7 +108,7 @@ func loadCredentials() (*Credentials, error) {
 func getValidNumber(lower, upper int) int {
 	i := 0
 	for {
-		fmt.Print("Enter a number: ")
+		fmt.Fprint(os.Stderr, "Enter a number: ")
 		_, err := fmt.Scanf("%d", &i)
 
 		if err != nil || i < lower || i > upper {
