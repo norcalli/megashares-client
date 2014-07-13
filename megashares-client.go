@@ -3,13 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/cheggaaa/pb"
-	"github.com/norcalli/megashares"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/cheggaaa/pb"
+	"github.com/norcalli/megashares"
 )
 
 const credentialFile = "login.json"
